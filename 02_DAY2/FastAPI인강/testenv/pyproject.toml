@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "testenv"
+version = "0.1.0"
+description = ""
+authors = ["jun2k5 <jun2k5@naver.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.3.4"
+coverage = "7.6.9"
+pytest-asyncio = "0.25.0"
+ruff = "^0.14.10"
+black = "^25.12.0"
+mypy = "^1.19.1"
+pydantic = "^2.12.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+omit = ["*/test_*.py"]
+
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+target-version="py314"
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+python_version = 3.13
+strict = true
