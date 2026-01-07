@@ -3,14 +3,13 @@ from datetime import datetime
 import uuid
 
 class User(BaseModel):
-    user_id: str
+    user_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
-    role: str = Field(default="user")
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    role: str = "user"
+    created_at: datetime = Field(default_factory=lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
-    @model_validator
-    def check_user_id(self):
-        if not self.user_id:
-            self.user_id = uuid.uuid4()
+
+
+
 
 
